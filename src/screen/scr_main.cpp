@@ -6,26 +6,30 @@ using namespace std;
 
 int main()
 {
-	auto myScreen = Screen{6,6};
-	myScreen.forward();
-	myScreen.set('*');
-	myScreen.down();
-	myScreen.set('*');
-	myScreen.move(3,3);
-	myScreen.set("---");
+	auto myInitial = Screen{6,6};
 
-	myScreen.display();
-	cout << endl;
-
-	myScreen.reSize(16,16);
-	myScreen.display();
-	myScreen.clear(' ');
-
-	myScreen.move(7,7);
-	myScreen.set("BIG");
-	myScreen.move(8,5);
-	myScreen.set("SCREEN");
-	myScreen.display();
+    myInitial.clear(' ');
+    myInitial.set("******");
+    myInitial.move(2,1);
+    myInitial.set('*');
+    myInitial.move(2,6);
+    myInitial.set('*');
+    myInitial.move(3,1);
+    myInitial.set("******");
+    myInitial.move(4,1);
+    myInitial.set('*');
+    myInitial.move(4,4);
+    myInitial.set('*');
+    myInitial.move(5,1);
+    myInitial.set('*');
+    myInitial.move(5,5);
+    myInitial.set('*');
+    myInitial.move(6,1);
+    myInitial.set('*');
+    myInitial.move(6,6);
+    myInitial.set('*');
+    myInitial.display();
+    cout << endl;
 
 	return 0;
 }
