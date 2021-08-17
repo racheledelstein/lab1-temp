@@ -68,6 +68,32 @@ void Screen::move( string::size_type row, string::size_type col )
 	return;
 }
 
+void Screen::move(Direction dir)
+{
+    switch (dir)
+    {
+case Direction::HOME: // code to be executed if Direction is up;
+        home();
+        break;
+    case Direction::FORWARD: // code to be executed if Direction is forward;
+        forward(); // call forward method
+        break;
+    case Direction::BACK: // code to be executed if Direction is back;
+        back(); // call back method
+        break;
+    case Direction::UP: // code to be executed if Direction is up;
+        up(); // call up method
+        break;
+    case Direction::DOWN: // code to be executed if Direction is down;
+        down(); // call down method
+        break;
+    case Direction::END: // code to be executed if Direction is end;
+       end();
+        break; //call end method
+    }
+    return;
+}
+
 char Screen::get( string::size_type row, string::size_type col )
 {
 	// position cursor_

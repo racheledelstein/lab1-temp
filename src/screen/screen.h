@@ -24,6 +24,11 @@ public:
 	// Screen's constructor
 	Screen(string::size_type height, string::size_type width, char bkground = '#');
 
+	enum class Direction
+	{
+	    HOME, FORWARD, BACK, UP, DOWN, END
+    };
+
 	// get the Screen's height
 	string::size_type height() const { return height_; }
 	// get the Screen's width
@@ -44,6 +49,9 @@ public:
 	// move the cursor to the specified row and column
 	void move(string::size_type row, string::size_type col);
 
+	//move the cursor in the speficied direction
+	void move(Direction dir);
+
 	// get the character at the cursor's current position
 	char get() const { return _screen[cursor_]; }
 	// get the character at the specified row and column
@@ -62,6 +70,7 @@ public:
 	void display() const;
 	// check whether the specified co-ordinates lie within the screen
 	bool checkRange(string::size_type row, string::size_type col) const;
+
 
 private:
 	// constants
@@ -83,6 +92,7 @@ private:
 	string::size_type cursor_ = TOP_LEFT;
 	// the Screen's data is stored as a string
 	string _screen;
+	//strongly-typed enum Direction
 };
 
 
