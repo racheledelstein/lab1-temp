@@ -12,6 +12,13 @@ using namespace std;
 // *size* of any string that can be held by the string class as well as any index into
 // the string.
 
+//Exercise 4.2
+// 56: The const reference to string, s, ensures that none of the contents of the string can be modified.
+// 63: The const function ensures that this function does not modify any of the objects on
+// which the function is called/ used.
+// 70: The const is used to make the TOP_LEFT variable constant while the Screen object exists.
+
+
 class Screen {
 public:
 	// Screen's constructor
@@ -60,7 +67,7 @@ private:
 	// constants
 	// 0 represents the top-left screen element
 	const string::size_type TOP_LEFT = 0;
-	
+
 	// private member functions
 	string::size_type remainingSpace() const;
 	string::size_type row() const;
@@ -71,7 +78,7 @@ private:
 	// number of Screen rows
 	string::size_type height_;
 	// number of Screen columns
-	string::size_type width_;	
+	string::size_type width_;
 	// default position of the Screen's cursor, use in-class initilisation
 	string::size_type cursor_ = TOP_LEFT;
 	// the Screen's data is stored as a string

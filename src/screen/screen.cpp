@@ -1,5 +1,8 @@
 #include "screen.h"
 
+//Exercise 4.2
+// The screen_.at gives a reference to the specified index of a position on the grid/screen.
+
 // Screen's constructor
 Screen::Screen(string::size_type height, string::size_type width, char bkground):
 	height_{height},// initialises height_ with height
