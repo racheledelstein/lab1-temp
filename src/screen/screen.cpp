@@ -37,7 +37,13 @@ void Screen::up()
 {   // move cursor_ up one row of screen
 	// do not wrap around
 	if ( row() == 1 ) // at top?
-		cerr << "Screen::up - Cannot wrap around in a vertical direction" << endl;
+    // cerr << "Screen::up - Cannot wrap around in a vertical direction" << endl;
+    {
+        cursor_=cursor_+1;
+        cursor_=cursor_+((height_-1)*height_);
+        auto col_loc=(height_*height_)-cursor_;
+        move(height_,width_-col_loc);
+    }
 	else
 		cursor_ -= width_;
 
@@ -47,8 +53,13 @@ void Screen::up()
 void Screen::down()
 {   // move cursor_ down one row of screen
 	// do not wrap around
-	if ( row() == height_ ) // at bottom?
-		cerr << "Screen::down - Cannot wrap around in a vertical direction" << endl;
+    if ( row() == height_ ) // at bottom?
+        //cerr << "Screen::down - Cannot wrap around in a vertical direction" << endl;
+    {
+        cursor_=cursor_+1;
+        cursor_=cursor_-((height_-1)*height_);
+        move(1,cursor_);
+    }
 	else
 		cursor_ += width_;
 

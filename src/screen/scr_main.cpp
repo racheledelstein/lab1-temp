@@ -40,6 +40,8 @@ int main()
     // member function already do exist through other member functions. The advantage of this
     // member function is ease of accessibility through enumeration which provides an easy and
     // efficient way for the client to navigate the code.
+
+    /*
     auto myScreen = Screen{6,6};
 
     myScreen.move(Screen::Direction::DOWN);
@@ -56,8 +58,24 @@ int main()
     myScreen.set('H');
     myScreen.display();
     cout << endl;
+    */
 
-
+    // Exercise 4.4
+    auto wrapAround = Screen{6,6};
+    wrapAround.move(6,3);
+    wrapAround.down();
+    wrapAround.set('d');
+    wrapAround.forward();
+    wrapAround.forward();
+    wrapAround.up();
+    wrapAround.set('u');
+    wrapAround.down();
+    wrapAround.set('d');
+    wrapAround.forward();
+    wrapAround.up();
+    wrapAround.set('u');
+    wrapAround.display();
+    cout << endl;
 	return 0;
 }
 
