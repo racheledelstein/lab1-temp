@@ -61,6 +61,7 @@ int main()
     */
 
     // Exercise 4.4
+    /*
     auto wrapAround = Screen{6,6};
     wrapAround.move(6,3);
     wrapAround.down();
@@ -75,6 +76,24 @@ int main()
     wrapAround.up();
     wrapAround.set('u');
     wrapAround.display();
+    cout << endl;
+    */
+
+    //Exercise 4.5
+    // One could simply use the existing interface without needing to create this member function. Here, in scr_main,
+    // one could use the same functionalities such as set(), move() and the relative movement functions such as up()
+    // and down() to draw the square. The function is an efficient way for the client to draw the square without getting
+    // into the detail of member functions.
+
+    //This function is not a totally necessary ability of a Screen object as it is possible to implement this
+    // funciton without explicitly creating a function. In other words, it is possible to implement this without creating
+    // a member function specifically for this use.
+
+    auto mySquare = Screen{8,8};
+    mySquare.drawSquare(3,3,6);
+    cout << endl;
+    auto mySquare2 = Screen{8,8};
+    mySquare2.drawSquare(2,2,4);
     cout << endl;
 	return 0;
 }

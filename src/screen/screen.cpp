@@ -216,3 +216,43 @@ string::size_type Screen::row() const
 	return (cursor_ + width_)/width_;
 }
 
+void Screen::drawSquare(string::size_type row, string::size_type col, int length)
+{
+    //draw sqaure of specified size and start position
+    if (checkRange(row, col))
+    {
+        if (checkRange(row+length,col+length))
+        {
+            clear(' ');
+            move(row,col);
+            for (int i=1; i<=length; i++)
+            {
+                set('X');
+                forward();
+            }
+            move(row+1,col);
+            for(int i=1; i<length; i++)
+            {
+                set('X');
+                down();
+            }
+            move(row+length-1,col+1);
+            for(int i=1; i<length; i++)
+            {
+                set('X');
+                forward();
+            }
+            back();
+            for(int i=1; i<length-1; i++)
+            {
+                up();
+                set('X');
+            }
+
+            display();
+    }
+    }
+
+    return;
+}
+

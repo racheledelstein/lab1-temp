@@ -70,6 +70,8 @@ public:
 	void display() const;
 	// check whether the specified co-ordinates lie within the screen
 	bool checkRange(string::size_type row, string::size_type col) const;
+	//draw a square of specified size and start position
+	void drawSquare(string::size_type row, string::size_type col, int length_);
 
 
 private:
@@ -92,7 +94,7 @@ private:
 	string::size_type cursor_ = TOP_LEFT;
 	// the Screen's data is stored as a string
 	string _screen;
-	//strongly-typed enum Direction
+
 };
 
 
