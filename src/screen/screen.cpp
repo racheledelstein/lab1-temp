@@ -1,5 +1,8 @@
 #include "screen.h"
 
+//Exercise 4.2
+// The screen_.at gives a reference to the specified index of a position on the grid/screen.
+
 // Screen's constructor
 Screen::Screen(string::size_type height, string::size_type width, char bkground):
 	height_{height},// initialises height_ with height
@@ -34,7 +37,13 @@ void Screen::up()
 {   // move cursor_ up one row of screen
 	// do not wrap around
 	if ( row() == 1 ) // at top?
-		cerr << "Screen::up - Cannot wrap around in a vertical direction" << endl;
+    // cerr << "Screen::up - Cannot wrap around in a vertical direction" << endl;
+    {
+        cursor_=cursor_+1;
+        cursor_=cursor_+((height_-1)*height_);
+        auto col_loc=(height_*height_)-cursor_;
+        move(height_,width_-col_loc);
+    }
 	else
 		cursor_ -= width_;
 
@@ -44,8 +53,13 @@ void Screen::up()
 void Screen::down()
 {   // move cursor_ down one row of screen
 	// do not wrap around
-	if ( row() == height_ ) // at bottom?
-		cerr << "Screen::down - Cannot wrap around in a vertical direction" << endl;
+    if ( row() == height_ ) // at bottom?
+        //cerr << "Screen::down - Cannot wrap around in a vertical direction" << endl;
+    {
+        cursor_=cursor_+1;
+        cursor_=cursor_-((height_-1)*height_);
+        move(1,cursor_);
+    }
 	else
 		cursor_ += width_;
 
@@ -63,6 +77,32 @@ void Screen::move( string::size_type row, string::size_type col )
 	}
 
 	return;
+}
+
+void Screen::move(Direction dir)
+{
+    switch (dir)
+    {
+case Direction::HOME: // code to be executed if Direction is up;
+        home();
+        break;
+    case Direction::FORWARD: // code to be executed if Direction is forward;
+        forward(); // call forward method
+        break;
+    case Direction::BACK: // code to be executed if Direction is back;
+        back(); // call back method
+        break;
+    case Direction::UP: // code to be executed if Direction is up;
+        up(); // call up method
+        break;
+    case Direction::DOWN: // code to be executed if Direction is down;
+        down(); // call down method
+        break;
+    case Direction::END: // code to be executed if Direction is end;
+       end();
+        break; //call end method
+    }
+    return;
 }
 
 char Screen::get( string::size_type row, string::size_type col )
@@ -174,5 +214,45 @@ string::size_type Screen::remainingSpace() const
 string::size_type Screen::row() const
 {   // return current row
 	return (cursor_ + width_)/width_;
+}
+
+void Screen::drawSquare(string::size_type row, string::size_type col, int length)
+{
+    //draw sqaure of specified size and start position
+    if (checkRange(row, col))
+    {
+        if (checkRange(row+length,col+length))
+        {
+            clear(' ');
+            move(row,col);
+            for (int i=1; i<=length; i++)
+            {
+                set('X');
+                forward();
+            }
+            move(row+1,col);
+            for(int i=1; i<length; i++)
+            {
+                set('X');
+                down();
+            }
+            move(row+length-1,col+1);
+            for(int i=1; i<length; i++)
+            {
+                set('X');
+                forward();
+            }
+            back();
+            for(int i=1; i<length-1; i++)
+            {
+                up();
+                set('X');
+            }
+
+            display();
+    }
+    }
+
+    return;
 }
 

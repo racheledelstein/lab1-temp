@@ -12,10 +12,22 @@ using namespace std;
 // *size* of any string that can be held by the string class as well as any index into
 // the string.
 
+//Exercise 4.2
+// 56: The const reference to string, s, ensures that none of the contents of the string can be modified.
+// 63: The const function ensures that this function does not modify any of the objects on
+// which the function is called/ used.
+// 70: The const is used to make the TOP_LEFT variable constant while the Screen object exists.
+
+
 class Screen {
 public:
 	// Screen's constructor
 	Screen(string::size_type height, string::size_type width, char bkground = '#');
+
+	enum class Direction
+	{
+	    HOME, FORWARD, BACK, UP, DOWN, END
+    };
 
 	// get the Screen's height
 	string::size_type height() const { return height_; }
@@ -37,6 +49,9 @@ public:
 	// move the cursor to the specified row and column
 	void move(string::size_type row, string::size_type col);
 
+	//move the cursor in the speficied direction
+	void move(Direction dir);
+
 	// get the character at the cursor's current position
 	char get() const { return _screen[cursor_]; }
 	// get the character at the specified row and column
@@ -55,12 +70,15 @@ public:
 	void display() const;
 	// check whether the specified co-ordinates lie within the screen
 	bool checkRange(string::size_type row, string::size_type col) const;
+	//draw a square of specified size and start position
+	void drawSquare(string::size_type row, string::size_type col, int length_);
+
 
 private:
 	// constants
 	// 0 represents the top-left screen element
 	const string::size_type TOP_LEFT = 0;
-	
+
 	// private member functions
 	string::size_type remainingSpace() const;
 	string::size_type row() const;
@@ -71,11 +89,12 @@ private:
 	// number of Screen rows
 	string::size_type height_;
 	// number of Screen columns
-	string::size_type width_;	
+	string::size_type width_;
 	// default position of the Screen's cursor, use in-class initilisation
 	string::size_type cursor_ = TOP_LEFT;
 	// the Screen's data is stored as a string
 	string _screen;
+
 };
 
 
