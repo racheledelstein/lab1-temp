@@ -96,5 +96,10 @@ int main()
     mySquare2.drawSquare(2,2,4);
     cout << endl;
 	return 0;
+
+	//Exercise 4.6
+	// A better, more intuitive internal representation of the Screen class would be to use a 2D vector. This is more suited as
+	// it is dynamic so the Screen size does not need to be specified. Furthermore, a 2D vector is more intuitive as it can be thought
+	// of as a screen more easily than strings.
 }
 
